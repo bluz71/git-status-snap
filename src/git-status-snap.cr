@@ -12,7 +12,7 @@ Process.run("git", args: [
   is_dirty = false
   is_staged = false
   has_stash = false
-  upstream : Int32? = nil
+  upstream = nil
 
   process.output.each_line do |line|
     is_git = true
