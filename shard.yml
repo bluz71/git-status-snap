@@ -1,0 +1,11 @@
+name: git-status-snap
+version: 0.1.0
+
+targets:
+  git-status-snap:
+    main: src/git-status-snap.cr
+    build: --crap
+
+crystal: '>= 1.15.0'
+
+license: MIT
