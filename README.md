@@ -1,14 +1,15 @@
 git-status-snap
 ===============
 
-_git-status-snap_ is a [Crystal](https://crystal-lang.org/) utility that runs
-and parses `git status` to constituent shell environment variables that can be
-sourced by a Bash, Zsh or Fish script to render a fast Git-aware prompt.
+_git-status-snap_ is a utility implemented in
+[Crystal](https://crystal-lang.org/) that runs and parses `git status` to
+constituent shell environment variables that can be sourced by a Bash, Zsh or
+Fish script to render a fast Git-aware prompt.
 
 Many custom prompts directly run and parse `git status` using shell commands.
 However, parsing the output of `git status` using shell commands is **much**
-slower than doing the same using optimized Rust, often twice as slow depending
-on the size of the repository.
+slower than doing the same using optimized Crystal, often twice as slow
+depending on the size of the repository.
 
 Note, this utility is used to accelerate the
 [bash-seafly-prompt](https://github.com/bluz71/bash-seafly-prompt).
@@ -46,9 +47,9 @@ And in Fish:
 git-status-snap | source
 ```
 
-Note, if using Fish just as an interactive shell, please make sure that the
-`SHELL` environment variable is set to your running version of the fish
-executable (for example `/bin/fish`).
+Note, if using Fish just as an interactive shell, as opposed to a login shell,
+please make sure that the `SHELL` environment variable is set to your running
+version of the fish executable (for example `/bin/fish`).
 
 Here is an example usage of _git-status-snap_ in a very simple Bash prompt
 script:
