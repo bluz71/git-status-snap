@@ -35,7 +35,7 @@ Process.run("git", args: [
           upstream = 2
         end
       end
-    elsif line[2] != "."
+    elsif line[2] != '.'
       is_staged = true
       is_dirty = true if line[3] != '.'
     else
