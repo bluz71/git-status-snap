@@ -51,6 +51,7 @@ Process.run("git", args: [
   # syntax to set and unset environment variables.
   is_fish = (ENV["SHELL"]? || "").includes?("fish")
 
+  # Git Status Flags (GSF) as environment variables.
   if is_fish
     puts "set -e GSF_REPOSITORY"
     puts "set -e GSF_BRANCH"
