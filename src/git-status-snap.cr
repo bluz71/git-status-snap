@@ -76,20 +76,9 @@ Process.run("git", args: [
       puts "export GSF_BRANCH='#{branch_name}'"
     end
 
-    if is_dirty
-      puts is_fish ? "set -gx GSF_DIRTY 1" : "export GSF_DIRTY=1"
-    end
-
-    if is_staged
-      puts is_fish ? "set -gx GSF_STAGED 1" : "export GSF_STAGED=1"
-    end
-
-    if upstream
-      puts is_fish ? "set -gx GSF_UPSTREAM #{upstream}" : "export GSF_UPSTREAM=#{upstream}"
-    end
-
-    if has_stash
-      puts is_fish ? "set -gx GSF_STASH 1" : "export GSF_STASH=1"
-    end
+    puts is_fish ? "set -gx GSF_DIRTY 1" : "export GSF_DIRTY=1" if is_dirty
+    puts is_fish ? "set -gx GSF_STAGED 1" : "export GSF_STAGED=1" if is_staged
+    puts is_fish ? "set -gx GSF_UPSTREAM #{upstream}" : "export GSF_UPSTREAM=#{upstream}" if upstream
+    puts is_fish ? "set -gx GSF_STASH 1" : "export GSF_STASH=1" if has_stash
   end
 end
