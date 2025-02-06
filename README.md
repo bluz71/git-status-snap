@@ -27,7 +27,7 @@ and build a release via `make` and copy the `git-status-snap` binary from
 Requirements
 ------------
 
-Git version `2.11`, released November 2016, or later is required.
+Git version `2.11`, released in November 2016, or later is required.
 
 Usage
 -----
