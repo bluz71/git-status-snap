@@ -1,3 +1,5 @@
+require "process"
+
 Process.run("git", args: [
   "--no-optional-locks",
   "status",
@@ -25,11 +27,12 @@ Process.run("git", args: [
         has_stash = true
       elsif line.starts_with?("# branch.ab")
         remote_differences = line[12..].gsub(/[+-]/, "")
-        if remote_differences == "0 0"
+        case remote_differences
+        when "0 0"
           upstream = 0
-        elsif remote_differences.starts_with?("0 ")
+        when /^0 /
           upstream = -1
-        elsif remote_differences.ends_with?(" 0")
+        when / 0$/
           upstream = 1
         else
           upstream = 2
@@ -42,16 +45,14 @@ Process.run("git", args: [
       is_dirty = true
     end
 
-    # Early exit, no need to check more entries since both dirty and staged are
-    # in effect.
+    # Early exit, no need to check more entries since both dirty and staged are in effect.
     break if is_staged && is_dirty
   end
 
-  # Determine if we are running inside the Fish shell since it uses a different
-  # syntax for setting & unsetting environment variables.
+  # Determine if we are running inside Fish shell since it uses a different syntax for setting/unsetting environment variables.
   is_fish = (ENV["SHELL"]? || "").includes?("fish")
 
-  # Unset Git Status Flag (GSF) environment variables.
+  # Unset Git Status Flags (GSF) environment variables.
   if is_fish
     puts "set -e GSF_REPOSITORY"
     puts "set -e GSF_BRANCH"
@@ -68,8 +69,7 @@ Process.run("git", args: [
     puts "unset GSF_STASH"
   end
 
-  # Set Git Status Flag (GSF) environment variables if we are in a Git
-  # repository.
+  # Set Git Status Flags (GSF) environment variables if we are in a Git repository.
   if is_git
     if is_fish
       puts "set -gx GSF_REPOSITORY 1"
